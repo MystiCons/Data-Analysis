@@ -27,8 +27,7 @@ for child in root:  # loop for going through the proper nested lists in the
     data = {"Time": root[i][0][1].text,
             "Type": root[i][0][2].text,
             "Value": root[i][0][3].text}
-    # extremely shitty format
-    # conversion
+    # setting the data as a dict for better .json compability 
     i += 1
     test = json.dumps(data)  # converting data dict to .json dumb
     dataFile.write(test + "\n")  # writing the dump to file with newline
