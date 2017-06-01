@@ -29,8 +29,8 @@ for child in root:  # loop for going through the proper nested lists in the
             "Value": root[i][0][3].text}
     # setting the data as a dict for better .json compability 
     i += 1
-    test = json.dumps(data)  # converting data dict to .json dumb
-    dataFile.write(test + "\n")  # writing the dump to file with newline
+    dump = json.dumps(data)  # converting data dict to .json dumb
+    dataFile.write(dump + "\n")  # writing the dump to file with newline
 
 
 dataFile.close()
