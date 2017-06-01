@@ -1,23 +1,38 @@
 #!/usr/bin/python3
+"""
+xml_parser.py
+
+Created:  31.5.2017 by Niko Liimatainen
+Modified: 1.6.2017 by Niko Liimatainen
+
+
+Simple XML parser and .json converter.
+
+"""
+
 
 import xml.etree.ElementTree as etree
+import json
 
 root = etree.parse('./Data/weatherDaily').getroot()  # gets the local XML file
 # and it's root for parsing
 
 i = 0
 
+
 dataFile = open('./Data/Weather-Daily_Parsed.json', 'w')
 
 for child in root:  # loop for going through the proper nested lists in the
-    # XML and writes them to a local file
-    dataFile.write(
-        '\n{"Time" : "%s", ' % root[i][0][1].text +
-        '"Type" : "%s" , ' % root[i][0][2].text +
-        '"Value": "%s"}\n\n' % root[i][0][3].text)  # extremely shitty format
-    #  conversion
+    # XMl-file
+    data = {"Time": root[i][0][1].text,
+            "Type": root[i][0][2].text,
+            "Value": root[i][0][3].text}
+    # extremely shitty format
+    # conversion
     i += 1
+    test = json.dumps(data)  # converting data dict to .json dumb
+    dataFile.write(test + "\n")  # writing the dump to file with newline
+
 
 dataFile.close()
 
-# TODO: Better json convert
