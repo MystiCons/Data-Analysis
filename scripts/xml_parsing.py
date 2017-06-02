@@ -4,6 +4,7 @@ xml_parser.py
 
 Created:  31.5.2017 by Niko Liimatainen
 Modified: 1.6.2017 by Niko Liimatainen
+          2.6.2017 by Niko Liimatainen
 
 
 Simple XML parser and .json converter.
@@ -29,9 +30,8 @@ for child in root:  # loop for going through the proper nested lists in the
             "Value": root[i][0][3].text}
     # setting the data as a dict for better .json compatibility
     i += 1
-    dump = json.dumps(data)  # converting data dict to .json dumb
+    dump = json.dumps(data)  # converting data dict to .json dump
     dataFile.write(dump + "\n")  # writing the dump to file with newline
 
 
 dataFile.close()
-
