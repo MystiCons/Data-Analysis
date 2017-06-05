@@ -27,7 +27,7 @@ for child in root:  # loop for going through the proper nested lists in the
     # XMl-file
     data = {"Time": root[i][0][1].text,
             "Type": root[i][0][2].text,
-            "Value": root[i][0][3].text}
+            "Value": float(root[i][0][3].text)}
     # setting the data as a dict for better .json compatibility
     i += 1
     dump = json.dumps(data)  # converting data dict to .json dump
