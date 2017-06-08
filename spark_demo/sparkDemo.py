@@ -47,7 +47,7 @@ spark = SparkSession \
     .getOrCreate()
 
 df = spark.read.json(
-    "./spark/projects/Data/Weather-Daily_Parsed.json")
+    "/opt/Spark/projects/Data/Weather-Daily_Parsed.json")
 # importing the local file
 
 
@@ -122,3 +122,12 @@ snowDays = df.filter(df['type'] == 'snow')
 snowCount = snowDays.filter(df['value'] >= 0).count()
 snowDays.filter(df['value'] >= 0).show(snowCount)
 # proper filtering
+
+maxCounts = tmaxValues.filter(df['value'] > 20)
+minCounts = tminValues.filter(df['value'] < -20)
+rainDays = rrDays.filter(df['value'] >= 0)
+
+snowDays.registerTempTable('snow_days')
+maxCounts.registerTempTable('max_temps')
+minCounts.registerTempTable('min_temps')
+rainDays.registerTempTable('rain_days')
